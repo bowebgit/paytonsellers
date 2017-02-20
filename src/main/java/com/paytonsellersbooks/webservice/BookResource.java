@@ -33,7 +33,7 @@ public class BookResource {
     @GET
     @Path("/all")
     @Produces(MediaType.APPLICATION_XML)
-    public ArrayList<Book> getBook(@PathParam("category") String cat){
+    public ArrayList<Book> getBook(){
     	ViewAction viewAction = new ViewAction();
     	ArrayList<Book> list = viewAction.getAllBooks();
     	return list;

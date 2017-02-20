@@ -162,7 +162,7 @@
     <finalName>PaytonSellers</finalName>
 
  <!-- filters context.xml to <web-app>/META-INF/context.xml -->
-<!-- 	 <plugins>
+	 <plugins>
 
 	    <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
@@ -183,10 +183,10 @@
 	
 	                    </resource>
 	                </webResources>
-
+					
 	                <warName>PaytonSellers</warName>
 	            </configuration>
 	        </plugin>
-	</plugins> -->
+	</plugins> 
   </build>
 </project>

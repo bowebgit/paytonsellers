@@ -1,9 +1,6 @@
 # Eclipse
 .classpath
-.project
 doc/
-.settings/
-
 .local
 datadictionary.pdf
 paytonsellers.sql

@@ -5,12 +5,14 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.paytonsellersbooks.dao.jpa.BookDAO;
 import com.paytonsellersbooks.dao.jpa.DAOException;
 import com.paytonsellersbooks.model.Book;
 
 @Service
+@Transactional
 public class ViewAction {
 
 	@Autowired

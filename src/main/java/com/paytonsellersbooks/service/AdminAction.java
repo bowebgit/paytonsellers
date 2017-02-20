@@ -3,8 +3,13 @@ package com.paytonsellersbooks.service;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.paytonsellersbooks.model.Book;
 
+@Service
+@Transactional
 public class AdminAction {
 	
 	public Book addBook(Book book){

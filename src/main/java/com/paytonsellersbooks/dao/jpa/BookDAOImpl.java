@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -445,15 +446,14 @@ public class BookDAOImpl implements BookDAO {
 	 * Fetches all of the books.
 	 * @return 		an array list of up to 30 books
 	 */
-	@SuppressWarnings("unchecked")
 	public synchronized ArrayList<Book> findAllBooks() throws DAOException{
-		//Book book = new Book();
-		//book = sessionFactory.getCurrentSession().get(Book.class, 512);
+		Book book = new Book();
+		book.setBook_title("Unknown");
+		ArrayList<Book> books = new ArrayList<Book>();
+		books.add(book);
+		return books;
+	
 		
-		Criteria criteria = sessionFactory.getCurrentSession(). 
-				createCriteria(Book.class);
-		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-		return (ArrayList<Book>) criteria.list();
 	}
 	
 	/**

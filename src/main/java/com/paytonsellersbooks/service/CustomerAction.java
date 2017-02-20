@@ -2,14 +2,16 @@ package com.paytonsellersbooks.service;
 
 import java.util.ArrayList;
 
-import com.paytonsellersbooks.dao.jpa.CustomerDAO;
-import com.paytonsellersbooks.dao.jpa.InvoiceDAO;
-import com.paytonsellersbooks.dao.jpa.InvoiceDetailDAO;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import com.paytonsellersbooks.model.Address;
 import com.paytonsellersbooks.model.Customer;
 import com.paytonsellersbooks.model.Invoice;
 import com.paytonsellersbooks.model.InvoiceDetail;
 
+@Service
+@Transactional
 public class CustomerAction {
 
 	public Customer registerUser(Customer customer) {
