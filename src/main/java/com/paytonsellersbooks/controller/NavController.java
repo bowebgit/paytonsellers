@@ -1,8 +1,3 @@
-/**
- * NavController.java
- * 
- */
-
 package com.paytonsellersbooks.controller;
 
 import java.io.IOException;
@@ -11,64 +6,67 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.paytonsellersbooks.action.CustomerAction;
-import com.paytonsellersbooks.action.ViewAction;
+// import com.paytonsellersbooks.action.CustomerAction;
+// import com.paytonsellersbooks.action.ViewAction;
+import com.paytonsellersbooks.service.CustomerAction;
+import com.paytonsellersbooks.service.ViewAction;
 import com.paytonsellersbooks.model.Customer;
 
 @Controller
 public class NavController {
-
-	// /hours-and-location
+	
+	@Autowired
+	private CustomerAction customerAction;
+	
+	@Autowired
+	private ViewAction viewAction;
+	
+	// Returns /HoursAndLocation.jsp
 	@RequestMapping(value="/hours-and-location")
 	public String hoursAndLocation(Model model, HttpServletRequest request){
 		// Get categories
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories(); 
 		model.addAttribute("categories", categories);
 		
 		return "HoursAndLocation";
 	}
 	
-	// /shipping-info
+	// Returns /ShippingInfo.jsp
 	@RequestMapping(value="/shipping-info")
 	public String shipping(Model model){
 		// Get categories
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories(); 
 		model.addAttribute("categories", categories);
 		return "ShippingInfo";
 	}
 	
-	// /support
+	// /Returns /Support.jsp
 	@RequestMapping(value="/support")
 	public String support(Model model){
 		// Get categories
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories(); 
 		model.addAttribute("categories", categories);
 		return "Support";
 	} 
 	
-	// /terms-and-conditions
+	// Returns TermsAndConditions.jsp
 	@RequestMapping(value="/terms-and-conditions")
 	public String termsAndConditions(Model model){
 		// Get categories
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories(); 
 		model.addAttribute("categories", categories);
 		return "TermsAndConditions";
 	}
 	
-	// /logout
-	/**
-	 * Redirects to /home after invalidating the session.
-	 */
+	// Redirects to /home
 	@RequestMapping(value="/logout")
 	public void logout(HttpServletRequest request, HttpServletResponse response){
 		request.getSession().setAttribute("cusid", null);
@@ -81,21 +79,17 @@ public class NavController {
 		}
 	}
 	
-	// /login
-	/**
-	 * Returns the login page. A request to '/userlogin' is restricted. Tomcat uses 
-	 * this url mapping for login form page.
-	 */
+	// Returns /Login. A request to '/userlogin' is restricted. Tomcat uses 
+	// this url mapping for login form page.
 	@RequestMapping(value="/login")
 	public String login(Model model){
 		// Get categories
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories(); 
 		model.addAttribute("categories", categories);
 		return "Login";
 	}
 	
-	// /userlogin
+	// Redirects to /home
 	/**
 	 * Returns a redirect to /home after setting the session attribute 'cusid' to the customers id. 
 	 * This url is restricted to 'admin' and 'user' roles. If not a 'user' or 'admin', 
@@ -106,8 +100,7 @@ public class NavController {
 				RedirectAttributes redirectAttributes) {
 		
 		String email = request.getRemoteUser();
-		
-		CustomerAction customerAction = new CustomerAction();
+
 		int id = customerAction.getIdAtLogin(email);
 		
 		request.getSession().setAttribute("cusid", id);
@@ -118,14 +111,10 @@ public class NavController {
 		return "redirect:/home";
 	}
 
-	// /register
-	/**
-	 * Returns the registration page.
-	 */
+	// Returns /Register.jsp
 	@RequestMapping(value="/register")
 	public String register(Model model){
 		// Get categories
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories(); 
 		model.addAttribute("categories", categories);
 		
@@ -134,10 +123,7 @@ public class NavController {
 		return "Register";
 	}
 	
-	// userregister
-	/**
-	 * Returns a redirect to /userlogin after validates and registers a new user in the system.
-	 */
+	// Redirects to /userlogin after register a new user, or Returns /Register.jsp if errors
 	@RequestMapping(value="userregister")
 	public String register(@ModelAttribute Customer customer, Model model, HttpServletResponse response,
 			RedirectAttributes redirectAttributes) {
@@ -152,8 +138,7 @@ public class NavController {
 			model.addAttribute("error", "Enter a valid email and password.");
 			return "Register";
 		}
-		
-		CustomerAction customerAction = new CustomerAction();
+
 		customer = customerAction.registerUser(customer);
 		if(customer.getCus_id() == 0){
 			model.addAttribute("error", "Email is taken.");

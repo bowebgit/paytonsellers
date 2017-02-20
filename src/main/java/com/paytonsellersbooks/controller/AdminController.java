@@ -19,6 +19,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,14 +32,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.paytonsellersbooks.action.AdminAction;
-import com.paytonsellersbooks.action.ViewAction;
+//import com.paytonsellersbooks.action.AdminAction;
+//import com.paytonsellersbooks.action.ViewAction;
+import com.paytonsellersbooks.service.AdminAction;
+import com.paytonsellersbooks.service.ViewAction;
 import com.paytonsellersbooks.model.Book;
 
 @Controller
 @RequestMapping(value="/admin")
 public class AdminController { 
-
+	
+	@Autowired
+	private AdminAction adminAction;
+	
+	@Autowired
+	private ViewAction viewAction;
 	
 	// admin-front
 	/**
@@ -62,7 +70,6 @@ public class AdminController {
 		Book book = new Book();
 		
 		if(id != 0){ // get the book for editing
-			AdminAction adminAction = new AdminAction();
 			book = adminAction.getBookById(id);
 			if(book.getBook_id() == 0 || book.getBook_title() == null){ // no book found
 				model.addAttribute("error", "Book not found.");
@@ -125,9 +132,6 @@ public class AdminController {
 		}
 		
 		// End: write image.
-			
-		AdminAction adminAction = new AdminAction();
-		ViewAction viewAction = new ViewAction();
 		
 		if(book.getBook_id() == 0){ // id is zero because new book, insert new book
 			book = adminAction.addBook(book);
@@ -153,7 +157,6 @@ public class AdminController {
 	@RequestMapping(value="/view-book/{id}")
 	public String adminViewBook(@PathVariable int id, Model model){
 		
-		AdminAction adminAction = new AdminAction();
 		Book book = adminAction.getBookById(id);
 		if(book.getBook_id() == 0 || book.getBook_title() == null){ // no book found
 			model.addAttribute("error", "No book found.");
@@ -176,7 +179,6 @@ public class AdminController {
 	@RequestMapping(value="/edit-categories/{id}")
 	public String adminEditCategories(@PathVariable int id, Model model, HttpServletRequest request){	
 		
-		AdminAction adminAction = new AdminAction();
 		Book book = adminAction.getBookById(id);
 		if(book.getBook_id() == 0 || book.getBook_title() == null){ // no book found
 			model.addAttribute("error", "No book found.");
@@ -187,7 +189,6 @@ public class AdminController {
 		HashMap<String, ArrayList<String>> bookCats = adminAction.getBooksCategories(id);
 		model.addAttribute("bookCats", bookCats);
 		
-		ViewAction viewAction = new ViewAction();
 		HashMap<String, ArrayList<String>> categories = viewAction.getCategories();
 		model.addAttribute("categories", categories);
 
@@ -279,9 +280,6 @@ public class AdminController {
 			System.out.println("");
 		}
 		
-		
-		AdminAction adminAction = new AdminAction();
-		
 		Integer result = adminAction.setCategories(map, bookId);
 		if(result < 0){
 			return "redirect:/admin/admin-front";
@@ -296,7 +294,6 @@ public class AdminController {
 	 */
 	@RequestMapping(value="/delete-book/{id}")
 	public String adminDeleteBook(@PathVariable int id, Model model){
-		AdminAction adminAction = new AdminAction();
 		adminAction.removeBook(id);
 		return "/admin/AdminFront";
 	}

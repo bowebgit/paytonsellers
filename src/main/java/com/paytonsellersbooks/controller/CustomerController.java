@@ -1,8 +1,3 @@
-/**
- * CustomerController.java
- * 
- */
-
 package com.paytonsellersbooks.controller;
 
 import java.io.IOException;
@@ -13,13 +8,17 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.paytonsellersbooks.action.CustomerAction;
-import com.paytonsellersbooks.action.ViewAction;
+
+// import com.paytonsellersbooks.action.CustomerAction;
+// import com.paytonsellersbooks.action.ViewAction;
+import com.paytonsellersbooks.service.CustomerAction;
+import com.paytonsellersbooks.service.ViewAction;
 import com.paytonsellersbooks.model.Address;
 import com.paytonsellersbooks.model.Book;
 import com.paytonsellersbooks.model.Customer;
@@ -30,7 +29,13 @@ import com.paytonsellersbooks.utility.CookieHelper;
 @Controller
 @RequestMapping(value="/customer")
 public class CustomerController {
-
+	
+	@Autowired
+	private CustomerAction customerAction;
+	
+	@Autowired
+	private ViewAction viewAction;
+	
 	// customer/my-account
 	/**
 	 * Returns /customer/MyAccount with customer info, address and shopping cart, and invoices.
@@ -40,11 +45,9 @@ public class CustomerController {
 		
 		int cusId = (Integer) request.getSession().getAttribute("cusid");
 
-		CustomerAction customerAction = new CustomerAction();
 		Customer customer = customerAction.getCustomerAndAddress(cusId);
 		model.addAttribute("customer", customer);
 		
-		ViewAction viewAction = new ViewAction();
 		ArrayList<InvoiceDetail> cart = new ArrayList<InvoiceDetail>();
 		int invLineCounter = 1;
 		Cookie[] cookies = request.getCookies();		
@@ -98,7 +101,6 @@ public class CustomerController {
 		int cusId = (Integer) request.getSession().getAttribute("cusid");
 		
 		// Get customer and address
-		CustomerAction customerAction = new CustomerAction();
 		Customer customer = customerAction.getCustomerAndAddress(cusId);
 
 		model.addAttribute("customer", customer);
@@ -117,7 +119,6 @@ public class CustomerController {
 		model.addAttribute("pmntProcess", pmntProcess);
 	
 		// Get customer and address
-		CustomerAction customerAction = new CustomerAction();
 		Customer customer = customerAction.getCustomerAndAddress(cusId);
 	
 		model.addAttribute("customer", customer);
@@ -135,8 +136,6 @@ public class CustomerController {
 		String id = request.getParameter("cusId");
 		int cusId = Integer.parseInt(id);
 		String pmntProcess = request.getParameter("pmntProcess");
-		
-		CustomerAction customerAction = new CustomerAction();
 		
 		address.setAdd_l1(request.getParameter("add_l1"));
 		address.setAdd_l2(request.getParameter("add_l2"));
@@ -167,11 +166,9 @@ public class CustomerController {
 		}catch(Exception e){
 			return "redirect:/customer/my-account";
 		}
-		CustomerAction customerAction = new CustomerAction();
 		Customer customer = customerAction.getCustomerAndAddress(cusId);
 		model.addAttribute("customer", customer);
 		
-		ViewAction viewAction = new ViewAction();
 		
 		ArrayList<InvoiceDetail> cart = new ArrayList<InvoiceDetail>();
 		int invLineCounter = 1;
@@ -226,7 +223,6 @@ public class CustomerController {
 		
 		// get customer info and address
 		int cusId = (Integer) request.getSession().getAttribute("cusid");
-		CustomerAction customerAction = new CustomerAction();
 		Customer customer = customerAction.getCustomerAndAddress(cusId);
 		
 		// populate Invoice
@@ -246,7 +242,6 @@ public class CustomerController {
 		Cookie[] cookies = request.getCookies();
 		CookieHelper helper = new CookieHelper();
 		
-		ViewAction viewAction = new ViewAction();
 		if (cookies != null) {
 			for(Cookie cookie : cookies){
 				String bookId = helper.getIdFromCookie(cookie.getName());
@@ -308,7 +303,6 @@ public class CustomerController {
 		if(id != cusId){
 			return "redirect:/my-account";
 		}
-		CustomerAction customerAction = new CustomerAction();
 		Invoice invoice = customerAction.getInvoiceById(invid);
 		model.addAttribute("invoice", invoice);
 		
@@ -332,7 +326,6 @@ public class CustomerController {
 		}
 		
 		if(request.getSession().getAttribute("cusid") == null){
-			CustomerAction customerAction = new CustomerAction();
 			String email = request.getRemoteUser();
 			int id = customerAction.getIdAtLogin(email);
 			request.getSession().setAttribute("cusid", id);

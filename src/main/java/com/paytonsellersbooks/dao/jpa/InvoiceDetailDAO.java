@@ -1,4 +1,4 @@
-package com.paytonsellersbooks.dao;
+package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;
 import java.util.ArrayList;

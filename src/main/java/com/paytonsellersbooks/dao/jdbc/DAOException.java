@@ -1,4 +1,4 @@
-package com.paytonsellersbooks.dao;
+package com.paytonsellersbooks.dao.jdbc;
 
 public class DAOException extends Exception{
 	private static final long serialVersionUID = -1848523385905345111L;

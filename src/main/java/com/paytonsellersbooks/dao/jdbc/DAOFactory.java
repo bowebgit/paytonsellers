@@ -1,4 +1,4 @@
-package com.paytonsellersbooks.dao;
+package com.paytonsellersbooks.dao.jdbc;
 
 public class DAOFactory {
 	public static DAO getDAO(){

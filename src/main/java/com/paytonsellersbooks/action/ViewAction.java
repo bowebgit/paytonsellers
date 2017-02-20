@@ -9,11 +9,11 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.paytonsellersbooks.dao.BookDAO;
-import com.paytonsellersbooks.dao.CategoryDAO;
-import com.paytonsellersbooks.dao.DAO;
-import com.paytonsellersbooks.dao.DAOException;
-import com.paytonsellersbooks.dao.DAOFactory;
+import com.paytonsellersbooks.dao.jdbc.BookDAO;
+import com.paytonsellersbooks.dao.jdbc.CategoryDAO;
+import com.paytonsellersbooks.dao.jdbc.DAO;
+import com.paytonsellersbooks.dao.jdbc.DAOException;
+import com.paytonsellersbooks.dao.jdbc.DAOFactory;
 import com.paytonsellersbooks.model.Book;
 
 public class ViewAction {

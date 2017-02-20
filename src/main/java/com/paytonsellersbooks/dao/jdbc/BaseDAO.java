@@ -1,9 +1,4 @@
-/**
- * BaseDAO.java
- * 
- */
-
-package com.paytonsellersbooks.dao;
+package com.paytonsellersbooks.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.SQLException;

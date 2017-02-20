@@ -1,4 +1,5 @@
-package com.paytonsellersbooks.services;
+package com.paytonsellersbooks.webservice;
+
 
 import java.util.ArrayList;
 
@@ -12,7 +13,9 @@ import com.paytonsellersbooks.action.ViewAction;
 import com.paytonsellersbooks.model.Book;
 
 @Path("book")
+
 public class BookResource {
+	
     @GET
     @Path("/jersey")
     @Produces(MediaType.TEXT_PLAIN)
@@ -35,5 +38,5 @@ public class BookResource {
     	ArrayList<Book> list = viewAction.getAllBooks();
     	return list;
     }
-    
+   
 }

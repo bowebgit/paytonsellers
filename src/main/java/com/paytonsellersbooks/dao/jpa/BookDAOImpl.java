@@ -3,7 +3,7 @@
  * 
  */
 
-package com.paytonsellersbooks.dao;
+package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,9 +13,19 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.paytonsellersbooks.model.Book;
 
+@Service
 public class BookDAOImpl implements BookDAO {
+		
+	@Autowired
+	private SessionFactory sessionFactory;
+	
 	private static final String INSERT_BOOK_SQL = "INSERT INTO book "
 			+ "(book_title, book_author_first, book_author_last, book_descript, "
 			+ "book_publisher, book_pubyear, book_isbn, book_length, book_dim, book_format, "
@@ -49,8 +59,7 @@ public class BookDAOImpl implements BookDAO {
 			+ "FROM book NATURAL JOIN book_category NATURAL JOIN category WHERE book_title LIKE ? OR book_author_first LIKE ? "
 			+ "OR book_author_first LIKE ? OR book_descript LIKE ? OR book_publisher LIKE ? OR book_isbn LIKE ? "
 			+ "OR cat_category LIKE ? OR cat_subcategory LIKE ? GROUP BY book_title";
-	
-	
+
 	/**
 	 * Inserts a book into the database and returns the auto-gen primary key.
 	 * @param book		a book
@@ -433,41 +442,18 @@ public class BookDAOImpl implements BookDAO {
 	}
 
 	/**
-	 * Returns up to 30 books from the database.
-	 * @param conn
-	 * @return 				an array list of up to 30 books
+	 * Fetches all of the books.
+	 * @return 		an array list of up to 30 books
 	 */
-	public synchronized ArrayList<Book> findAllBooks(Connection conn) throws DAOException{
-		ArrayList<Book> books = new ArrayList<Book>();
-
-		PreparedStatement pst = null;
-		ResultSet rs = null;
-		try{
-			pst = conn.prepareStatement(SELECT_ALL_BOOKS_SQL);
-			
-			rs = pst.executeQuery();
-			while(rs.next()){
-				Book book = new Book();
-				book.setBook_id(rs.getInt("book_id"));
-				book.setBook_title(rs.getString("book_title"));
-				book.setBook_author_first(rs.getString("book_author_first"));
-				book.setBook_author_last(rs.getString("book_author_last"));
-				book.setBook_price(rs.getInt("book_price"));
-				book.setBook_img(rs.getString("book_img"));
-				books.add(book);
-			}
-
-		}catch(SQLException e){
-			throw new DAOException("Error getting all books. " + e.getMessage());
-		}finally{
-			try{
-				if(rs != null) rs.close();
-				if(pst != null) pst.close();
-			}catch(SQLException e){
-				e.printStackTrace();
-			}
-		}
-		return books;
+	@SuppressWarnings("unchecked")
+	public synchronized ArrayList<Book> findAllBooks() throws DAOException{
+		//Book book = new Book();
+		//book = sessionFactory.getCurrentSession().get(Book.class, 512);
+		
+		Criteria criteria = sessionFactory.getCurrentSession(). 
+				createCriteria(Book.class);
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		return (ArrayList<Book>) criteria.list();
 	}
 	
 	/**

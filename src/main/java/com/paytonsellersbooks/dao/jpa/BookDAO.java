@@ -1,4 +1,4 @@
-package com.paytonsellersbooks.dao;
+package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -16,6 +16,8 @@ public interface BookDAO {
 	ArrayList<Book> findBestSelling(String category, Connection conn)throws DAOException;
 	ArrayList<Book> findNewArrivals(String category, Connection conn)throws DAOException;
 	ArrayList<Book> findBooksInCatSubcat(String category, String subcategory, Connection conn) throws DAOException;
-	ArrayList<Book> findAllBooks(Connection conn) throws DAOException;
+	ArrayList<Book> findAllBooks() throws DAOException;
 	ArrayList<Book> findBooksFromQuery(String query, Connection conn) throws DAOException;
+
+
 }

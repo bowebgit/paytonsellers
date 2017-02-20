@@ -9,12 +9,12 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.paytonsellersbooks.dao.CustomerDAO;
-import com.paytonsellersbooks.dao.DAO;
-import com.paytonsellersbooks.dao.DAOException;
-import com.paytonsellersbooks.dao.DAOFactory;
-import com.paytonsellersbooks.dao.InvoiceDAO;
-import com.paytonsellersbooks.dao.InvoiceDetailDAO;
+import com.paytonsellersbooks.dao.jdbc.CustomerDAO;
+import com.paytonsellersbooks.dao.jdbc.DAO;
+import com.paytonsellersbooks.dao.jdbc.DAOException;
+import com.paytonsellersbooks.dao.jdbc.DAOFactory;
+import com.paytonsellersbooks.dao.jdbc.InvoiceDAO;
+import com.paytonsellersbooks.dao.jdbc.InvoiceDetailDAO;
 import com.paytonsellersbooks.model.Address;
 import com.paytonsellersbooks.model.Customer;
 import com.paytonsellersbooks.model.Invoice;

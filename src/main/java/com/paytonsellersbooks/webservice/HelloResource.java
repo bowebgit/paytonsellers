@@ -1,5 +1,5 @@
-package com.paytonsellersbooks.services;
-
+package com.paytonsellersbooks.webservice;
+ 
 import java.util.ArrayList;
 
 import javax.ws.rs.GET;
@@ -13,6 +13,7 @@ import com.paytonsellersbooks.model.Book;
 
 
 public class HelloResource {
+
 	@GET
     @Produces(MediaType.TEXT_PLAIN)
     public String sayHello() {
@@ -34,5 +35,5 @@ public class HelloResource {
     	ArrayList<Book> list = viewAction.getAllBooks();
     	return list;
     }
-    
-}
+   
+} 

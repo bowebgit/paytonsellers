@@ -36,6 +36,22 @@
 <!-- SPRING -->
 	<dependency>
 		<groupId>org.springframework</groupId>
+		<artifactId>spring-core</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${spring.version}</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>org.springframework</groupId>
 		<artifactId>spring-context</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
@@ -59,6 +75,23 @@
 		<artifactId>spring-web</artifactId>
 		<version>${spring.version}</version>
 	</dependency>
+	
+	
+	
+	<dependency>
+    	<groupId>javax.persistence</groupId>
+    	<artifactId>persistence-api</artifactId>
+    	<version>1.0</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>org.hibernate</groupId>
+	    <artifactId>hibernate-core</artifactId>
+	    <version>4.1.9.Final</version>
+	</dependency>
+
+	
+	
 <!--  JSTL   -->
 	<dependency>
     	<groupId>jstl</groupId>
@@ -73,7 +106,7 @@
 	    <version>5.1.40</version>
 	</dependency>
 	
-<!-- TOMCAT JDBC CONN POOL  -->
+<!-- TOMCAT JDBC CONN POOL  
 	<dependency>
 	    <groupId>org.apache.tomcat</groupId>
 	    <artifactId>tomcat-jdbc</artifactId>
@@ -84,6 +117,8 @@
 	    <artifactId>commons-pool</artifactId>
 	    <version>1.4</version>
 	</dependency>
+	
+	-->	
 	<dependency>
     	<groupId>commons-dbcp</groupId>
     	<artifactId>commons-dbcp</artifactId>
@@ -112,7 +147,7 @@
 	    <artifactId>jersey-server</artifactId>
 	    <version>1.19</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/com.sun.jersey/jersey-archive -->
+	
 	<dependency>
 	    <groupId>com.sun.jersey</groupId>
 	    <artifactId>jersey-archive</artifactId>
@@ -127,7 +162,7 @@
     <finalName>PaytonSellers</finalName>
 
  <!-- filters context.xml to <web-app>/META-INF/context.xml -->
-	 <plugins>
+<!-- 	 <plugins>
 
 	    <plugin>
 	            <groupId>org.apache.maven.plugins</groupId>
@@ -142,7 +177,7 @@
 	                </archive>
 	                <webResources>
 	                    <resource>
-	                        <!-- this is relative to the pom.xml directory -->
+	                        this is relative to the pom.xml directory
 	                        <directory>${project.basedir}/src/main/resources
 	                        </directory>
 	
@@ -152,6 +187,6 @@
 	                <warName>PaytonSellers</warName>
 	            </configuration>
 	        </plugin>
-	</plugins>
+	</plugins> -->
   </build>
 </project>

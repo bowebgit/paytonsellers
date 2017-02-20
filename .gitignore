@@ -1,9 +1,13 @@
 # Eclipse
 .classpath
 .project
-.local
 doc/
 .settings/
+
+.local
+datadictionary.pdf
+paytonsellers.sql
+
 
 # Maven
 log/
