@@ -16,15 +16,15 @@
 
 		
 		
-		<context:component-scan base-package="com.paytonsellersbooks"/> 
-	<!--  	<context:component-scan base-package="com.paytonsellersbooks.dao.jpa"/>
+		<context:component-scan base-package="com.paytonsellersbooks.controller"/>
+		<!-- Scans for annotations in service pkg and daos if using JPA --> 
+		<context:component-scan base-package="com.paytonsellersbooks.dao.jpa"/>
 		<context:component-scan base-package="com.paytonsellersbooks.service"/> 
 		<context:component-scan base-package="com.paytonsellersbooks.entity"/>
-  	-->	
-		<!-- SERVICE AND DAO FOR JDBC 
+  		<!-- Scans for annotations in action pkg and daos if using jdbc -->
 		<context:component-scan base-package="com.paytonsellersbooks.dao.jdbc"/> 
 		<context:component-scan base-package="com.paytonsellersbooks.action"/> 
-   		--> 
+   		
     	
     	<mvc:resources mapping="/css/**" location="/css/"/>
     	<mvc:resources mapping="/images/**" location="/images/"/>
@@ -34,6 +34,11 @@
 		<mvc:annotation-driven />	
 		<tx:annotation-driven />
 
+
+
+
+
+
 <!-- Data Source -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -42,7 +47,6 @@
 		<property name="username" value="appuser" />
 		<property name="password" value="appuserpass!@#" />
 	</bean>
-	
 	
 <!-- Hibernate Session Factory -->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -55,7 +59,7 @@
 		</property>
 		<property name="packagesToScan" value="com.paytonsellers.entity" />
 	</bean>
-
+	
 <!-- Springs Transaction Manager -->
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager"
