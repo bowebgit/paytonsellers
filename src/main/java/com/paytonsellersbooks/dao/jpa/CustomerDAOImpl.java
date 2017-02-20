@@ -1,8 +1,3 @@
-/**
- * CustomerDAOImpl.java
- * 
- */
-
 package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;
@@ -12,8 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
-import com.paytonsellersbooks.model.Address;
-import com.paytonsellersbooks.model.Customer;
+import com.paytonsellersbooks.entity.Address;
+import com.paytonsellersbooks.entity.Customer;
 
 public class CustomerDAOImpl implements CustomerDAO {
 		private static final String INSERT_CUSTOMER_SQL = "INSERT INTO customer "

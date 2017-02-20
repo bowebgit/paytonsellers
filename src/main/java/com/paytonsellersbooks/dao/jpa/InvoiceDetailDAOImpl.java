@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.paytonsellersbooks.model.InvoiceDetail;
+import com.paytonsellersbooks.entity.InvoiceDetail;
 
 public class InvoiceDetailDAOImpl implements InvoiceDetailDAO {
 	private static final String FIND_INVDETAILS_BYINVID = "SELECT * FROM invoice_detail WHERE inv_id = ?";

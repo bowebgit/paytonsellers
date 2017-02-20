@@ -1,14 +1,9 @@
-/**
- * CustomerDAO.java
- * 
- */
-
 package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;
 
-import com.paytonsellersbooks.model.Address;
-import com.paytonsellersbooks.model.Customer;
+import com.paytonsellersbooks.entity.Address;
+import com.paytonsellersbooks.entity.Customer;
 
 public interface CustomerDAO {
 

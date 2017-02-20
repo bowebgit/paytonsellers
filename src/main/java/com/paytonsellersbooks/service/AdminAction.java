@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.paytonsellersbooks.model.Book;
+import com.paytonsellersbooks.entity.Book;
 
 @Service
 @Transactional

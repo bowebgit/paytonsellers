@@ -13,7 +13,7 @@ import java.sql.Statement;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
-import com.paytonsellersbooks.model.Invoice;
+import com.paytonsellersbooks.entity.Invoice;
 
 public class InvoiceDAOImpl implements InvoiceDAO {
 	private static final String FIND_INVOICES_BYCUSID = "SELECT * FROM invoice WHERE cus_id = ?";

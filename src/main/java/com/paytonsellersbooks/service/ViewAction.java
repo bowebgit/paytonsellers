@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.paytonsellersbooks.dao.jpa.BookDAO;
 import com.paytonsellersbooks.dao.jpa.DAOException;
-import com.paytonsellersbooks.model.Book;
+import com.paytonsellersbooks.entity.Book;
 
 @Service
 @Transactional
@@ -31,7 +31,13 @@ public class ViewAction {
 	}
 
 	public Book getBookById(int bookId){
-		return null;
+		Book book = new Book();
+		try {
+			book = bookDAO.find(bookId);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		return book;
 	}
 	
 

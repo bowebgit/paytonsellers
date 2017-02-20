@@ -36,7 +36,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 //import com.paytonsellersbooks.action.ViewAction;
 import com.paytonsellersbooks.service.AdminAction;
 import com.paytonsellersbooks.service.ViewAction;
-import com.paytonsellersbooks.model.Book;
+import com.paytonsellersbooks.entity.Book;
 
 @Controller
 @RequestMapping(value="/admin")

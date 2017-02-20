@@ -5,22 +5,60 @@
 
 package com.paytonsellersbooks.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="invoice_detail")
 public class InvoiceDetail {
+	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="invdet_id", nullable = false)
 	private int invdet_id;
+	
+	@Column(name="inv_id")
+	private int inv_id;
+	
+	@Column(name="invdet_bookid")
 	private int invdet_bookid;
+	
+	@Column(name="invdet_title")
 	private String invdet_title;
+	
+	@Column(name="invdet_author")
 	private String invdet_author;
+	
+	@Column(name="invdet_isbn")
 	private String invdet_isbn;
+	
+	@Column(name="invdet_line")
 	private int invdet_line;
+	
+	@Column(name="invdet_price")
 	private int invdet_price;
+	
+	@Column(name="invdet_units")
 	private int invdet_units;
 
+	
+	
 	/* Getters and Setters */
 	public int getInvdet_id() {
 		return invdet_id;
 	}
 	public void setInvdet_id(int invdet_id) {
 		this.invdet_id = invdet_id;
+	}
+	public int getInv_id() {
+		return inv_id;
+	}
+	public void setInv_id(int inv_id) {
+		this.inv_id = inv_id;
 	}
 	public int getInvdet_bookid() {
 		return invdet_bookid;

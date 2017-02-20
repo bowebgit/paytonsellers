@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.paytonsellersbooks.model.Address;
-import com.paytonsellersbooks.model.Customer;
-import com.paytonsellersbooks.model.Invoice;
-import com.paytonsellersbooks.model.InvoiceDetail;
+import com.paytonsellersbooks.entity.Address;
+import com.paytonsellersbooks.entity.Customer;
+import com.paytonsellersbooks.entity.Invoice;
+import com.paytonsellersbooks.entity.InvoiceDetail;
 
 @Service
 @Transactional

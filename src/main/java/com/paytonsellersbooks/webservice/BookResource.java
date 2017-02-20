@@ -9,8 +9,8 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-import com.paytonsellersbooks.action.ViewAction;
-import com.paytonsellersbooks.model.Book;
+import com.paytonsellersbooks.service.ViewAction;
+import com.paytonsellersbooks.entity.Book;
 
 @Path("book")
 

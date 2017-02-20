@@ -18,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 // import com.paytonsellersbooks.action.ViewAction;
 import com.paytonsellersbooks.service.CustomerAction;
 import com.paytonsellersbooks.service.ViewAction;
-import com.paytonsellersbooks.model.Customer;
+import com.paytonsellersbooks.entity.Customer;
 
 @Controller
 public class NavController {

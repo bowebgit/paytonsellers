@@ -7,9 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
+@Table(name="book")
 public class Book {
 	
 	@Id
@@ -17,34 +19,35 @@ public class Book {
 	@Column(name="book_id", nullable = false)
 	private int book_id;
 	
+	@Column(name="book_title")
 	private String book_title;
-	
+	@Column(name="book_author_first")	
 	private String book_author_first;
-	
+	@Column(name="book_author_last")
 	private String book_author_last;
-	
+	@Column(name="book_descript")
 	private String book_descript;
-	
+	@Column(name="book_publisher")
 	private String book_publisher;
-	
+	@Column(name="book_pubyear")
 	private Integer book_pubyear;
-	
+	@Column(name="book_isbn")
 	private String book_isbn;
-	
+	@Column(name="book_length")
 	private String book_length;
-	
+	@Column(name="book_dim")
 	private String book_dim;
-	
+	@Column(name="book_format")
 	private String book_format;
-	
+	@Column(name="book_price")
 	private Integer book_price;
-	
+	@Column(name="book_buycounter", nullable = false)
 	private int book_buycounter;
-	
+	@Column(name="book_viewcounter", nullable = false)
 	private int book_viewcounter;
-	
+	@Column(name="book_img")
 	private String book_img;
-	
+	@Column(name="book_date")
 	private Date book_date;
 	
 	/* Getters and Setters */

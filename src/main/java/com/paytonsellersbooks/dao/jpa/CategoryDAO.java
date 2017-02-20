@@ -1,8 +1,3 @@
-/**
- * CategoryDAO.java
- * 
- */
-
 package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;

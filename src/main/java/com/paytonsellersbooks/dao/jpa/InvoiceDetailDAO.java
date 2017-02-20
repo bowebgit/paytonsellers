@@ -2,7 +2,7 @@ package com.paytonsellersbooks.dao.jpa;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-import com.paytonsellersbooks.model.InvoiceDetail;
+import com.paytonsellersbooks.entity.InvoiceDetail;
 
 public interface InvoiceDetailDAO {
 

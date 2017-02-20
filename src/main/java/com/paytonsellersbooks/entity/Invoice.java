@@ -7,18 +7,57 @@ package com.paytonsellersbooks.entity;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="invoice")
 public class Invoice {
-	 
-	private ArrayList<InvoiceDetail> invoice_detail = new ArrayList<InvoiceDetail>();
+	
+	@OneToMany(cascade=CascadeType.ALL)
+	@JoinColumn(name="inv_id", referencedColumnName="inv_id")
+	private List<InvoiceDetail> invoice_detail;
+	
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="inv_id", nullable = false)
 	private int inv_id;
+	
+	@Column(name="inv_date")
 	private Date inv_date;
+	
+	@Column(name="cus_id")
+	private int cus_id;
+	
+	@Column(name="inv_cus_first")
 	private String inv_cus_first;
+	
+	@Column(name="inv_cus_last")
 	private String inv_cus_last;
+	
+	@Column(name="inv_add_l1")
 	private String inv_add_l1;
+	
+	@Column(name="inv_add_l2")
 	private String inv_add_l2;
+	
+	@Column(name="inv_add_city")
 	private String inv_add_city;
+	
+	@Column(name="inv_add_state")
 	private String inv_add_state;
+	
+	@Column(name="inv_add_zip")
 	private String inv_add_zip;
 
 	
@@ -34,12 +73,19 @@ public class Invoice {
 	public void setInv_id(int inv_id) {
 		this.inv_id = inv_id;
 	}
+	public int getCus_id() {
+		return cus_id;
+	}
+	public void setCus_id(int cus_id) {
+		this.cus_id = cus_id;
+	}
 	public Date getInv_date() {
 		return inv_date;
 	}
 	public void setInv_date(Date inv_date) {
 		this.inv_date = inv_date;
 	}
+
 	public String getInv_cus_first() {
 		return inv_cus_first;
 	}
@@ -82,10 +128,10 @@ public class Invoice {
 	public void setInv_add_zip(String inv_add_zip) {
 		this.inv_add_zip = inv_add_zip;
 	}
-	public ArrayList<InvoiceDetail> getInvoice_detail() {
+	public List<InvoiceDetail> getInvoice_detail() {
 		return invoice_detail;
 	}
-	public void setInvoice_detail(ArrayList<InvoiceDetail> invoice_detail) {
+	public void setInvoice_detail(List<InvoiceDetail> invoice_detail) {
 		this.invoice_detail = invoice_detail;
 	}
 	
