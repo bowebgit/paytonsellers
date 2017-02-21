@@ -95,6 +95,13 @@ public class ViewController {
 	// Returns /Results.jsp
 	@RequestMapping(value="/search")
 	public String search(Model model, HttpServletRequest req, HttpServletResponse res){
+		String query = (String) req.getParameter("q");
+		
+		//HashMap<String, ArrayList<String>> categories = viewAction.getCategories();
+		//model.addAttribute("categories", categories);
+		
+		ArrayList<Book> books = viewAction.getBooksFromSearchQuery(query);
+		model.addAttribute("books", books);
 		return "/Results";
 	} 
 	

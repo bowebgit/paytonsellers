@@ -46,14 +46,20 @@ public class ViewAction {
 	}
 
 	public ArrayList<Book> getBooksFromSearchQuery(String query){
-		return null;
+		ArrayList<Book> books = new ArrayList<Book>();
+		try {
+			books = (ArrayList<Book>) bookDAO.findBooksFromQuery(query);
+		} catch (DAOException e) {
+			e.printStackTrace();
+		}
+		return books;
 	}
 	
 
 	public ArrayList<Book> getAllBooks(){
 		ArrayList<Book> books = new ArrayList<Book>();
 		try {
-			books = bookDAO.findAllBooks();
+			books = (ArrayList<Book>) bookDAO.findAllBooks();
 		} catch (DAOException e) {
 			e.printStackTrace();
 		}

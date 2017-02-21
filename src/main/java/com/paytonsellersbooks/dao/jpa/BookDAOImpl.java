@@ -1,7 +1,10 @@
 package com.paytonsellersbooks.dao.jpa;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,13 +63,13 @@ public class BookDAOImpl implements BookDAO {
 
 	}
 	public  Book find(String name) throws DAOException {
-		//Query query = sessionFactory.
-		//		getCurrentSession().
-		//		createQuery("from Book where prod_name = :name");
-		//query.setParameter("name", name);
-		//return (Book) query.list().get(0);
-		return null;
+		Query query = sessionFactory.
+				getCurrentSession().
+				createQuery("from Book where prod_name = :name");
+		query.setParameter("name", name);
+		return (Book) query.list().get(0);
 	}
+	
 	/**
 	 * Select (30) books by category.
 	 * @param category			a category to search for books
@@ -120,13 +123,13 @@ public class BookDAOImpl implements BookDAO {
 	 * Fetches all of the books.
 	 * @return 		an array list of up to 30 books
 	 */
-	public  ArrayList<Book> findAllBooks() throws DAOException{
-		Book book = new Book();
-		book.setBook_title("Unknown");
-		ArrayList<Book> books = new ArrayList<Book>();
-		books.add(book);
-		return books;
-	
+	@SuppressWarnings("unchecked")
+	public List<Book> findAllBooks() throws DAOException{
+		Criteria criteria = sessionFactory.getCurrentSession(). 
+				createCriteria(Book.class); 
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		return criteria.list();
+		
 		
 	}
 	
@@ -136,10 +139,14 @@ public class BookDAOImpl implements BookDAO {
 	 * @param conn	
 	 * @return 				an array list of books matching the query
 	 */
-	public  ArrayList<Book> findBooksFromQuery(String query) throws DAOException{
-		ArrayList<Book> books = new ArrayList<Book>();
+	@SuppressWarnings("unchecked")
+	public  List<Book> findBooksFromQuery(String query) throws DAOException{
 
-		return books;
+		Query createdQuery = sessionFactory.getCurrentSession(). 
+				createSQLQuery("select * from book b where b.book_title = :searchKey")
+				.addEntity(Book.class).setParameter("searchKey", query);
+		List result = createdQuery.list();
+		return result;
 	}
 
 }
